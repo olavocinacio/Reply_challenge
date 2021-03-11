@@ -1,6 +1,7 @@
 # python3 main.py Inputs/input.in 2>/dev/null
 
 import sys
+import math; # uso da função sqrt
 
 def stderrwriteflush(arg):
     sys.stderr.write(str(arg))
@@ -86,3 +87,23 @@ if __name__ == "__main__":
     main()
 
 
+################################################################ ZONA DE PRODUÇÃO ###################################################################################
+def scoring(predios,antennas,antenas_output): # antennas - lista do input; antenas_output - output gerado com as posições
+	score = 0;
+	for predio in predios:
+		for antena in antenas_output:
+			score += ((predio[3]*antennas[antena[1]])-(predio[2]*distance(predio,antena)))
+
+
+def distance(predio,output_antena): # predio - construção específica; output_antena - antena mais próxima
+	distancia = round(math.sqrt((predio[0]-output_antena[1])^2+(predio[1]-output_antena[2])^2))
+	return distancia;
+
+def reward(predios, premio):
+	for predio in predios:
+		if(): # Se o prédio não estiver conectado
+			reward = 0;
+			break;
+		else:
+			reward = premio;
+	return reward;
