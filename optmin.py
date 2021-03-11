@@ -1,6 +1,8 @@
 import numpy as np
 from scipy import optimize
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+mpl.use('Agg')
 
 x = np.arange(-10, 10, 0.1)
 def f(x):

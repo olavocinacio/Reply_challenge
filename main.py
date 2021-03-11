@@ -6,7 +6,9 @@ import math; # uso da função sqrt
 def stderrwriteflush(arg):
     sys.stderr.write(str(arg))
     sys.stderr.write("\n")
-# def randomfunctiontodowhatisrequired:
+
+
+
 # generic flow
 def input_local():
     try:
@@ -88,15 +90,17 @@ if __name__ == "__main__":
 
 
 ################################################################ ZONA DE PRODUÇÃO ###################################################################################
-def scoring(predios,antennas,antenas_output): # antennas - lista do input; antenas_output - output gerado com as posições
+def scoring(predios,antennas,antennas_output): # antennas - lista do input; antenas_output - output gerado com as posições
 	score = 0;
 	for predio in predios:
-		for antena in antenas_output:
-			score += ((predio[3]*antennas[antena[1]])-(predio[2]*distance(predio,antena)))
+		for antena in antennas_output:
+			score += ((predio[3]*antennas[antena[1]])-(predio[2]*distance(predio,antena)));
+	score += reward(predios,1000); # alterar o prêmio dinamicamente
+	return score;
 
-
-def distance(predio,output_antena): # predio - construção específica; output_antena - antena mais próxima
-	distancia = round(math.sqrt((predio[0]-output_antena[1])^2+(predio[1]-output_antena[2])^2))
+def distance(predio,output_antenna): # predio - construção específica; output_antena - antena mais próxima
+	distancia = (abs(predio[0]-output_antenna[0]) + abs(predio[1]-output_antenna[1]));
+  	#round(math.sqrt((predio[0]-output_antena[1])^2+(predio[1]-output_antena[2])^2));
 	return distancia;
 
 def reward(predios, premio):
